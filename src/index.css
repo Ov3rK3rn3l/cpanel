@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap');
+
+@layer base {
+  :root {
+    /* Dark Theme com base Gray-950 e detalhes em Red-700 */
+    --background: 222 47% 6%; /* Equivalent to gray-950, slightly desaturated blue/gray */
+    --foreground: 0 0% 100%; /* White */
+
+    --card: 222 40% 10%; /* Darker card color, related to background */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 222 47% 4%; /* Popovers even darker */
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 65% 50%; /* Red-700 equivalent (HSL can vary, this is an example) */
+    --primary-light: 0 70% 60%; /* Lighter Red */
+    --primary-dark: 0 65% 40%; /* Darker Red */
+    --primary-foreground: 0 0% 100%; /* White text on Red */
+    
+    --secondary: 0 60% 45%; /* Slightly different Red for secondary elements */
+    --secondary-foreground: 0 0% 100%;
+
+    --highlight-vibrant: 0 80% 65%; /* Vibrant Red for CTAs and important highlights */
+
+    --muted: 222 30% 20%; /* Muted dark gray/blue */
+    --muted-foreground: 222 20% 65%; /* Lighter gray for muted text */
+
+    --accent: 0 60% 55%; /* Red for hover and interactive elements */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%; /* This is already red, keep or adjust if primary red conflicts */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 50% 35%; /* Red-700 for borders */
+    --input: 222 40% 12%; /* Dark input background */
+    --ring: 0 70% 60%; /* Red-700 for focus ring */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 0 0% 100%;
+    --card: 222 40% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 222 47% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 65% 50%;
+    --primary-light: 0 70% 60%;
+    --primary-dark: 0 65% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 60% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --highlight-vibrant: 0 80% 65%;
+    --muted: 222 30% 20%;
+    --muted-foreground: 222 20% 65%;
+    --accent: 0 60% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%; /* Keep this red or adjust */
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 50% 35%;
+    --input: 222 40% 12%;
+    --ring: 0 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-foreground;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--card)); /* Changed from background to card for TabsList */
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.7);
+  border-radius: var(--radius);
+  border: 2px solid hsl(var(--card)); /* Changed from background to card for TabsList */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Specific scrollbar for horizontal tab list */
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 6px; /* Thinner scrollbar for horizontal */
+}
+.horizontal-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--card) / 0.8);
+}
+.horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.6);
+  border: 1px solid hsl(var(--card) / 0.8);
+}
+.horizontal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+
+.glassmorphic {
+  background: hsl(var(--card) / 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--border) / 0.3);
+  box-shadow: 0 4px 20px 0 hsl(var(--primary) / 0.1); /* Red shadow */
+}
+
+html, body, #root {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#root > div { /* Assuming MainLayout is the direct child of #root */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+html {
+  @apply dark;
+}
+
+@layer components {
+  .input-dark {
+    @apply bg-input text-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-primary border-border transition-colors duration-200;
+  }
+  .btn-primary-dark {
+    @apply bg-primary text-primary-foreground hover:bg-primary-light transition-all duration-300 ease-in-out transform hover:scale-105 focus:ring-ring shadow-lg shadow-primary/30 hover:shadow-primary-light/40;
+  }
+  .btn-secondary-dark {
+    @apply bg-secondary text-secondary-foreground hover:bg-accent transition-all duration-300 ease-in-out shadow-md shadow-secondary/25 hover:shadow-accent/35;
+  }
+  .btn-outline-dark {
+    @apply border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-primary/30;
+  }
+  .btn-destructive-dark {
+     @apply bg-destructive text-destructive-foreground hover:bg-red-700 transition-all duration-300 ease-in-out shadow-md shadow-destructive/25 hover:shadow-red-700/35;
+  }
+  .btn-discord {
+    @apply bg-indigo-500 text-white hover:bg-indigo-600 transition-colors duration-300 shadow-md shadow-indigo-500/30 hover:shadow-indigo-600/40;
+  }
+  .btn-vibrant {
+    @apply bg-highlight-vibrant text-black hover:opacity-90 transition-opacity duration-300 font-semibold shadow-lg shadow-highlight-vibrant/40 hover:shadow-highlight-vibrant/50;
+  }
+  .dashboard-tab-trigger {
+    @apply flex-shrink-0 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-secondary/50 transition-all duration-200 ease-in-out px-3 py-2 rounded-md text-xs sm:text-sm whitespace-nowrap; /* px-2.5 py-1.5 to px-3 py-2 for slightly larger click area, added flex-shrink-0 and whitespace-nowrap */
+  }
+}

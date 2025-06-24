@@ -1,0 +1,10 @@
+Video placeholder content. The actual video file should be placed here by the user.
+This is a placeholder text file for gerr_hero_background.mp4.
+Please replace this file with your actual video file (e.g., a short, looping, silent MP4 video).
+The recommended video specs are:
+- Resolution: 1920x1080 (Full HD) or 1280x720 (HD)
+- Format: MP4 (H.264 codec)
+- Duration: 10-30 seconds (short and looping)
+- File Size: Keep it as small as possible for fast loading (e.g., under 5-10MB)
+- Audio: Muted by default, so no audio track is strictly necessary.
+Ensure the video path in src/pages/LandingPage.jsx ( <source src="/videos/gerr_hero_background.mp4" type="video/mp4" /> ) matches the actual file path and name.
